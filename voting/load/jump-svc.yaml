@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: vote
+  namespace: load
+spec:
+  type: ExternalName
+  externalName: vote.voting.svc.cluster.local
+  ports:
+  - port: 8080
+    name: http
+    targetPort: 8080
