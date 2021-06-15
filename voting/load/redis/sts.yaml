@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: redis
+    component: database
+    part-of: load
+  name: redis
+  namespace: load
+spec:
+  selector:
+    matchLabels:
+      app: redis
+      component: database
+      part-of: load
+  serviceName: redis
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+        component: database
+        part-of: load
+    spec:
+      containers:
+      - image: redis
+        name: redis
+        ports:
+        - containerPort: 6379
+          name: redis
+        startupProbe:
+          tcpSocket:
+            port: redis
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 5
+        livenessProbe:
+          tcpSocket:
+            port: redis
+          initialDelaySeconds: 0
+          timeoutSeconds: 2
+        volumeMounts:
+        - name: datadir
+          mountPath: /data
+        - name: opt
+          mountPath: /opt
+      volumes:
+      - name: opt
+        emptyDir: {}
+      - name: datadir
+        emptyDir: {}
+...

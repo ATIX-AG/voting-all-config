@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: options-db
+  namespace: voting
+data:
+  HOST: "db:5432"
+...
