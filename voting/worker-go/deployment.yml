@@ -31,7 +31,7 @@ spec:
         part-of: voting
     spec:
       containers:
-      - image: andywirtzk8s/voting-worker-go:v1.0
+      - image: docker.pkg.github.com/atix-ag/voting-app-code/worker
         name: worker-go
         resources:
           requests:

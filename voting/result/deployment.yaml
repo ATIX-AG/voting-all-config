@@ -22,7 +22,7 @@ spec:
         app: result
     spec:
       containers:
-      - image: andywirtzk8s/voting-result:v1.0
+      - image: docker.pkg.github.com/atix-ag/voting-app-code/result
         name: result
         envFrom:
         - prefix: OPTION_
