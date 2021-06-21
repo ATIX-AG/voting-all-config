@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -11,3 +12,4 @@ data:
   PREFERENCE: "a"
   SLEEP: "5"
   REDIS_HOST: "redis:6379"
+...

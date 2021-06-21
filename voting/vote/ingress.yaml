@@ -19,3 +19,4 @@ spec:
   - hosts:
     - vote.voting.atix-training.de
     secretName: tls
+...
