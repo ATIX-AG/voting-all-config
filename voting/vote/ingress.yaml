@@ -1,5 +1,5 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
@@ -12,9 +12,12 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: vote
-          servicePort: 8080
+          service:
+            name: vote
+            port:
+              number: 8080
   tls:
   - hosts:
     - vote.voting.atix-training.de
