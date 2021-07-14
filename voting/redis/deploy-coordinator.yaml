@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-cluster-coordinator
+spec:
+  selector:
+    matchLabels:
+      app: redis-cluster-coordinator-lbl
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-cluster-coordinator-lbl
+    spec:
+      containers:
+      - name: redis-cluster-coordinator-pod
+        image: alpine:3
+        command: ['/bin/sh','/install.sh']
+        volumeMounts:
+        - name: cm-volume
+          mountPath: '/install.sh'
+          subPath: 'install.sh'
+        - name: cm-volume
+          mountPath: '/entrypoint.sh'
+          subPath: 'entrypoint.sh'
+        - name: cm-volume
+          mountPath: '/redis.conf'
+          subPath: 'redis.conf'
+      volumes:
+        - name: cm-volume
+          configMap:
+            name: redis-controller
+...

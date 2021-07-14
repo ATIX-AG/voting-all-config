@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-autoscale-cluster
+spec:
+  selector:
+    matchLabels:
+      redis: redis-cluster-pods-lbl
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        redis: redis-cluster-pods-lbl
+    spec:
+      containers:
+      - name: redis-cluster-pod
+        image: redis:6.2-alpine
+        command: ['/bin/sh','/entrypoint.sh']
+        volumeMounts:
+          - name: cm-volume
+            mountPath: '/entrypoint.sh'
+            subPath: 'entrypoint.sh'
+          - name: cm-volume
+            mountPath: '/redis.conf'
+            subPath: 'redis.conf'
+        resources:
+          requests:
+            memory: "8Mi"
+            cpu: "150m"
+          limits:
+            memory: "16Mi"
+            cpu: "200m"
+      volumes:
+        - name: cm-volume
+          configMap:
+            name: redis
+...
