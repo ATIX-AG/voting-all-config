@@ -23,7 +23,8 @@ spec:
         app: result
     spec:
       containers:
-      - image: docker.pkg.github.com/atix-ag/voting-app-code/result
+      - image: ghcr.io/atix-ag/voting-app-code/result
+        imagePullPolicy: IfNotPresent
         name: result
         envFrom:
         - prefix: OPTION_

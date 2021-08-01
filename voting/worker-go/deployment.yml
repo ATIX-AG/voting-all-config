@@ -31,7 +31,8 @@ spec:
         part-of: voting
     spec:
       containers:
-      - image: docker.pkg.github.com/atix-ag/voting-app-code/worker-go
+      - image: ghcr.io/atix-ag/voting-app-code/worker-go
+        imagePullPolicy: IfNotPresent
         name: worker-go
         resources:
           requests:
