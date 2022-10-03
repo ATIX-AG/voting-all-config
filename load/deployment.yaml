@@ -31,7 +31,7 @@ spec:
         part-of: load
     spec:
       containers:
-      - image: docker.pkg.github.com/atix-ag/voting-app-code/load
+      - image: ghcr.io/atix-ag/voting-app-code/load
         name: load
         resources:
           requests:

@@ -26,7 +26,7 @@ spec:
         app: vote
     spec:
       containers:
-      - image: docker.pkg.github.com/atix-ag/voting-app-code/vote
+      - image: ghcr.io/atix-ag/voting-app-code/vote
         name: vote
         envFrom:
         - prefix: OPTION_
